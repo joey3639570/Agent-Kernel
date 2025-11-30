@@ -12,17 +12,17 @@
         <img alt="GitHub Stars" src="https://img.shields.io/github/stars/ZJU-LLMs/Agent-Kernel?style=social">
     </a>
     <a href="https://github.com/ZJU-LLMs/Agent-Kernel/releases">
-        <img alt="Version" src="https://img.shields.io/badge/Version-1.0-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Version-1.0.0-blue">
     </a>
     <!-- Project Resources -->
-    <a href="[YOUR_HOMEPAGE_URL]">
+    <a href="https://www.agent-kernel.tech/">
         <img alt="Homepage" src="https://img.shields.io/badge/Homepage-Website-1f4b99?logo=home&logoColor=white">
     </a>
     <a href="[YOUR_PAPER_URL]">
         <img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-b31b1b.svg?logo=arxiv&logoColor=white">
     </a>
     <!-- Community -->
-    <a href="[YOUR_SOCIETYHUB_URL]">
+    <a href="https://www.agent-kernel.tech/societyhub">
         <img alt="SocietyHub" src="https://img.shields.io/badge/SocietyHub-Community-2ea44f?logo=discourse&logoColor=white">
     </a>
     <!-- <a href="[YOUR_DISCORD_INVITE_LINK]">

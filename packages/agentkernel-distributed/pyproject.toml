@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agentkernel-distributed"
-version = "0.0.1" 
+version = "1.0.0" 
 authors = []
 description = "A distributed multi-agent system framework"
 keywords = ["git", "llm", "agent", "ray"]
@@ -24,8 +24,8 @@ dependencies = [
     "psutil>=7.1.3",
 ]
 
-license = "MIT"
-license-files = ["LICENSE*"] 
+license = "Apache-2.0"
+license-files = ["LICENSE"] 
 
 [project.scripts]
 pcg = "agentkernel_distributed.toolkit.generation.pcg:cli"
@@ -47,8 +47,8 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/baconroot/MAS"
-Issues = "https://github.com/baconroot/MAS/issues"
+Repository = "https://github.com/ZJU-LLMs/Agent-Kernel"
+Issues = "https://github.com/ZJU-LLMs/Agent-Kernel/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["agentkernel_distributed"]
