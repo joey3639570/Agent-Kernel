@@ -1,0 +1,32 @@
+# ===================================================================
+# Main Simulator Configuration File (Entry Point)
+
+
+# --- Global Simulation Configuration ---
+# Parameters controlling the overall behavior of the simulator.
+simulation:
+  pod_size: 5            # Maximum number of agents per Agent Pod
+  init_batch_size: 5     # Number of pods to create per batch during initialization
+  max_ticks: 10     # Maximum time steps for the simulation run
+
+# --- Module Path Configuration ---
+# Defines the configuration file paths for all core modules.
+configs:
+  environment: "environment_config.yaml"
+  actions: "actions_config.yaml"
+  agent_templates: "agents_config.yaml"
+  system: "system_config.yaml"
+  database: "db_config.yaml"
+  models: "models_config.yaml"
+
+
+# # --- Data Path Configuration ---
+# # Defines all static data files used to initialize the environment and agents.
+
+
+data:
+  # Agent-related data
+  agent_profiles: "data/agents/profiles.jsonl"
+  # Environment-related data
+  agents_relation: "data/relation/relation.jsonl"
+  map_agents: "data/map/agents.jsonl"

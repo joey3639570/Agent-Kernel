@@ -1,0 +1,25 @@
+# system configuration
+
+name: TestSystem
+components:
+  messager:
+    # --- Interception rules are now direct properties of messager ---
+    allow_self_messages: false
+    block_empty_content: true
+    max_content_length: 2000
+    blocked_senders:
+      - banned_agent
+    blocked_receivers:
+      - no_receive_agent
+    blocked_keywords:
+      - spam
+      - forbidden
+    blocked_regex:
+      - "secret"
+    # ---  Removed 'plugins' section for messager ---
+
+  timer:
+    start_tick: 0
+    # ---  timeout_ticks is now a direct property of timer ---
+    timeout_ticks: 5
+    # --- Removed 'plugins' section for timer ---

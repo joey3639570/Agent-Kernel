@@ -1,0 +1,40 @@
+templates:
+  - name: "EasyAgent"
+    component_order:
+        - "perceive"
+        - "plan"
+        - "invoke"
+        - "state"
+        - "reflect"
+    components:
+      profile:
+        plugin:
+          EasyProfilePlugin:
+            adapters: 
+              redis: "RedisKVAdapter"
+            profile_data: "agent_profiles"
+      state:
+        plugin:
+          EasyStatePlugin:
+            adapters:
+              redis: "RedisKVAdapter"
+      plan:
+        plugin:
+          EasyPlanPlugin:
+            adapters:
+              redis: "RedisKVAdapter"
+      invoke:
+        plugin:
+          EasyInvokePlugin:
+            adapters:
+              redis: "RedisKVAdapter"
+      perceive:
+        plugin:
+          EasyPerceivePlugin:
+            adapters:
+              redis: "RedisKVAdapter"
+      reflect:
+        plugin:
+          EasyReflectPlugin:
+            adapters:
+              redis: "RedisKVAdapter"
