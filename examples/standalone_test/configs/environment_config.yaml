@@ -1,0 +1,14 @@
+name: EasyEnvironment
+components:
+  relation:
+    plugin:
+      EasyRelationPlugin:
+        adapters: 
+          redis: "RedisGraphAdapter"
+        relations: 'agents_relation'
+  space:
+    plugin:
+      EasySpacePlugin:
+        adapters:
+          redis: "RedisKVAdapter"
+        agents: 'map_agents'
