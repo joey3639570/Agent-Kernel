@@ -313,18 +313,26 @@ class AgentGenerator:
 
         return agents
 
-    def _clean_message(self, response: str = None) -> Optional[str]:
+    def _clean_message(self, response: str | list = None) -> Optional[str]:
         """
         Clean the response from the language model.
 
         Args:
-            response (Optional[str]): The response string to clean.
+            response (Optional[str | list]): The response string or list to clean.
 
         Returns:
             Optional[str]: The cleaned response string.
         """
         if not response:
             return response
+
+        if isinstance(response, list):
+            if len(response) == 0:
+                return None
+            response = response[0] if len(response) == 1 else " ".join(str(item) for item in response)
+        
+        if not isinstance(response, str):
+            response = str(response)
 
         response = response.split("</think>")[-1].strip()
         if response.startswith("```"):
