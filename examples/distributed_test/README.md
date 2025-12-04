@@ -1,7 +1,7 @@
 # Introduction
 This example demonstrates how to build a simple Multi-Agent System using Agent-Kernel, designed to help users understand the execution flow and facilitate future extensions.
 
-To simplify the process, we have provided basic implementations for five core plugins: Perceive, Plan, Invoke, Communication, and Space. The remaining modules are structured as placeholders (using pass) to allow for easy customization and expansion by the user.
+To simplify the process, we have provided basic implementations for five core plugins: Perceive, Plan, Invoke, Communication, and Space. The remaining plugins are structured as placeholders (using pass) to allow for easy customization and expansion by the user.
 
 # Quick Start
 1. Prepare the dataset:
