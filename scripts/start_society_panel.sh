@@ -91,7 +91,7 @@ print_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 # @return Echoes the Python command name if found, returns 1 if not found
 ##
 find_python() {
-    local candidates=("python3.13" "python3.12" "python3.11" "python3")
+    local candidates=("python3.11" "python3.12" "python3")
     for cmd in "${candidates[@]}"; do
         if command -v "$cmd" &> /dev/null; then
             local version_output
@@ -99,7 +99,8 @@ find_python() {
             local major minor
             major=$(echo "$version_output" | sed -E 's/Python ([0-9]+)\..*/\1/')
             minor=$(echo "$version_output" | sed -E 's/Python [0-9]+\.([0-9]+).*/\1/')
-            if [[ "$major" -ge "$REQUIRED_PYTHON_MAJOR" && "$minor" -ge "$REQUIRED_PYTHON_MINOR" ]]; then
+            # Added check: "$minor" -lt 13 to exclude Python 3.13
+            if [[ "$major" -ge "$REQUIRED_PYTHON_MAJOR" && "$minor" -ge "$REQUIRED_PYTHON_MINOR" && "$minor" -lt 13 ]]; then
                 echo "$cmd"
                 return 0
             fi

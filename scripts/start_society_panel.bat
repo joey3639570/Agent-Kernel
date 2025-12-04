@@ -83,15 +83,18 @@ GOTO :main
 :: @return Sets PYTHON_CMD variable if found, empty if not found
 :: ------------------------------------------------------------------------------
 :find_python
-    for %%P in (python3.13 python3.12 python3.11 python py) do (
+    for %%P in (python3.11 python3.12 python py) do (
         where %%P >NUL 2>&1
         if !ERRORLEVEL! EQU 0 (
             for /f "tokens=2 delims= " %%V in ('%%P --version 2^>^&1') do (
                 for /f "tokens=1,2 delims=." %%A in ("%%V") do (
                     if %%A GEQ %REQUIRED_PYTHON_MAJOR% (
                         if %%B GEQ %REQUIRED_PYTHON_MINOR% (
-                            set "PYTHON_CMD=%%P"
-                            GOTO :EOF
+                            :: Added check: LSS 13 to exclude Python 3.13
+                            if %%B LSS 13 (
+                                set "PYTHON_CMD=%%P"
+                                GOTO :EOF
+                            )
                         )
                     )
                 )
