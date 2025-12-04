@@ -4,12 +4,7 @@ This example demonstrates how to build a simple Multi-Agent System using Agent-K
 To simplify the process, we have provided basic implementations for five core plugins: Perceive, Plan, Invoke, Communication, and Space. The remaining modules are structured as placeholders (using pass) to allow for easy customization and expansion by the user.
 
 # Quick Start
-
-1. Install the required dependencies:
-    ```bash
-    pip install agentkernel-distributed
-    ```
-2. Prepare the dataset:
+1. Prepare the dataset:
    
     I. **Make directories**:
     ```
@@ -38,7 +33,8 @@ To simplify the process, we have provided basic implementations for five core pl
 
             [empty]
     ```
-    III. **Set your api key**
+    
+2. Set your api key
     ```yaml
         **Agent-Kernel/distributed_test/configs/models_config.yaml**
         - name: OpenAIProvider
@@ -47,7 +43,13 @@ To simplify the process, we have provided basic implementations for five core pl
         base_url: your-base-url
         capabilities: ["your-capabilities"] # e.g., capabilities: ["chat"]
     ```
-    IV. **Run**
+
+3. Install the required dependencies:
+    ```bash
+    pip install agentkernel-distributed
+    ```
+    
+4. Run
     ```bash
     cd Agent-Kernel
     python -m examples.distributed_test.run_simulation
