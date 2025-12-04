@@ -1,14 +1,13 @@
 <p align="center">
   <img
-    src="../../assets/agentkernel_logo.png"
+    src="https://raw.githubusercontent.com/ZJU-LLMs/Agent-Kernel/main/assets/agentkernel_logo.png"
     width="400"
   />
 </p>
 
 # Agent-Kernel Distributed
 
-**Agent-Kernel Distributed** is a distributed Multi-Agent System (MAS) framework designed to support large-scale environments using **Ray** for distributed execution.  
-It is ideal for coordinating multiple intelligent agents running across different nodes or processes.
+**Agent-Kernel Distributed** is a distributed Multi-Agent System (MAS) development framework designed to support large-scale environments using **Ray** for distributed execution. It is ideal for coordinating multiple intelligent agents running across different nodes or processes.
 
 ---
 
@@ -17,57 +16,34 @@ It is ideal for coordinating multiple intelligent agents running across differen
 ### 1. Requirements
 
 - `Python ≥ 3.11`
-- `uv`
 
-Install `uv`:
+### 2. Install from PyPI
+
+You can install Agent-Kernel Distributed directly from PyPI using `pip`.
 
 ```bash
-# Linux/macOS
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows (PowerShell)
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-# or via pip
-pip install uv
+pip install agentkernel-distributed
 ```
 
-### 2. Clone and activate environment
+> The distributed package depends on Ray and will install it automatically.
+
+**Installing with Optional Features**
+
+Agent-Kernel Distributed comes with optional dependencies for web services and storage solutions. You can install them as needed.
+
+- `web` → Installs `aiohttp`, `fastapi`, `uvicorn`
+- `storages` → Installs `asyncpg`, `pymilvus`, `redis`
+- `all` → Installs both `web` and `storages`
+
+To install the package with these extras, use the following format:
 
 ```bash
-git clone https://github.com/ZJU-LLMs/Agent-Kernel.git
-cd Agent-Kernel
-uv venv
-# Linux/macOS
-source .venv/bin/activate
-# Windows PowerShell
-# .venv\Scripts\Activate.ps1
-```
+# Install with web features
+pip install "agentkernel-distributed[web]"
 
-### 3. Install Agent-Kernel Distributed
+# Install with storage features
+pip install "agentkernel-distributed[storages]"
 
-- `web` → `aiohttp`, `fastapi`, `uvicorn`
-- `storages` → `asyncpg`, `pymilvus`, `redis`
-- `all` → includes both `web` and `storages`
-
-> You can add extras with `.[web]`, `.[storages]`, or `.[all]` after the package path.
-
-```bash
-cd packages/agentkernel-distributed
-# base install
-uv pip install -e .
-
-# with optional features:
-# uv pip install -e ".[web]"
-# uv pip install -e ".[storages]"
-# uv pip install -e ".[all]"
-```
-
-- Ray will be installed automatically as a dependency.
-- You no longer need to manually start a Ray cluster — the framework handles it when required.
-
-### 4. Run example simulation
-
-```bash
-uv run python -m examples.distributed_test.run_simulation
+# Install all optional features
+pip install "agentkernel-distributed[all]"
 ```
