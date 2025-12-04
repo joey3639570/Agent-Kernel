@@ -17,20 +17,21 @@ To simplify the process, we have provided basic implementations for five core pl
     ├──data/
         ├── agents/
         │   └── profiles.jsonl
-        └── map/
-            ├── agents.jsonl
+        ├── map/
+        │   └── agents.jsonl
+        └── relation/
             └── relation.jsonl
     ```
     II. **Make some sample data**:
     ```
         **profiles.jsonl**
-            {"id": "agent_001", "name": "Alice"}
-            {"id": "agent_002", "name": "Bob"}
+            {"id": "Alice", "name": "Alice"}
+            {"id": "Bob", "name": "Bob"}
             ...
 
         **agents.jsonl**
-            {"id": "agent_001", "position": [0, 0]}
-            {"id": "agent_002", "position": [10, 10]}
+            {"id": "Alice", "position": [0, 0]}
+            {"id": "Bob", "position": [10, 10]}
             ...
 
         **relation.jsonl**
