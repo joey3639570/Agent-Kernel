@@ -14,12 +14,12 @@
     <!-- <a href="https://github.com/ZJU-LLMs/Agent-Kernel/stargazers">
         <img alt="GitHub Stars" src="https://img.shields.io/github/stars/ZJU-LLMs/Agent-Kernel?style=social">
     </a> -->
-    <!-- <a href="https://github.com/ZJU-LLMs/Agent-Kernel/releases">
-        <img alt="Version" src="https://img.shields.io/github/v/release/ZJU-LLMs/Agent-Kernel?color=blue&label=Version">
-    </a> -->
     <a href="https://github.com/ZJU-LLMs/Agent-Kernel/releases">
-        <img alt="Version" src="https://img.shields.io/badge/Version-1.0.0-blue">
+        <img alt="Version" src="https://img.shields.io/github/v/release/ZJU-LLMs/Agent-Kernel?color=blue&label=Version">
     </a>
+    <!-- <a href="https://github.com/ZJU-LLMs/Agent-Kernel/releases">
+        <img alt="Version" src="https://img.shields.io/badge/Version-1.0.0-blue">
+    </a> -->
     <!-- Project Resources -->
     <a href="https://www.agent-kernel.tech">
         <img alt="Homepage" src="https://img.shields.io/badge/Homepage-Website-1f4b99?logo=home&logoColor=white">
@@ -186,9 +186,30 @@ pip install agentkernel-standalone
 pip install agentkernel-distributed
 ```
 
-> The distributed package depends on **Ray** and will install it automatically.
+> Note: The distributed package depends on **Ray** and will install it automatically.
 
 👉 For detailed usage and examples, see the [Distributed README](examples/distributed_test/README.md).
+
+#### Installing with Optional Features
+
+Both `agentkernel-standalone` and `agentkernel-distributed` support optional dependencies for web services and storage solutions. You can install them as needed.
+
+- `web` → Installs `aiohttp`, `fastapi`, `uvicorn`
+- `storages` → Installs `asyncpg`, `pymilvus`, `redis`
+- `all` → Installs both `web` and `storages`
+
+To install a package with these extras, use square brackets `[]`. For example:
+
+```bash
+# Install the standalone package with web features
+pip install "agentkernel-standalone[web]"
+
+# Install the distributed package with storage features
+pip install "agentkernel-distributed[storages]"
+
+# Install the distributed package with all optional features
+pip install "agentkernel-distributed[all]"
+```
 
 ### 3. (Optional) Start Society-Panel
 
@@ -256,7 +277,7 @@ If you use Agent-Kernel in your research, please consider citing our paper:
 Thanks to all the developers who have contributed to Agent-Kernel:
 
 <a href="https://github.com/ZJU-LLMs/Agent-Kernel/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZJU-LLMs/Agent-Kernel&v=1" />
+  <img src="https://contrib.rocks/image?repo=ZJU-LLMs/Agent-Kernel&v=1" width=400 />
 </a>
 
 _We also welcome you to become one of our contributors via Pull Requests!_

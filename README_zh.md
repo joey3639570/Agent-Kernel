@@ -12,7 +12,7 @@
         <img alt="GitHub Stars" src="https://img.shields.io/github/stars/ZJU-LLMs/Agent-Kernel?label=Stars&logo=github&color=brightgreen">
     </a>
     <a href="https://github.com/ZJU-LLMs/Agent-Kernel/releases">
-        <img alt="Version" src="https://img.shields.io/badge/Version-1.0.0-blue">
+        <img alt="Version" src="https://img.shields.io/github/v/release/ZJU-LLMs/Agent-Kernel?color=blue&label=Version">
     </a>
     <!-- Project Resources -->
     <a href="https://www.agent-kernel.tech/">
@@ -132,7 +132,7 @@ Agent-Kernel 引入了严格的系统级校验机制，我们对智能体的每�
 
 ### 4. 可复用性
 
-Agent-Kernel 采用了标准化的插件化设计，功能模块被封装为可互换的插件单元，支持跨场景的无缝复用 ，极大地加速了研究迭代的效率 。
+Agent-Kernel 采用了标准化的插件化设计，功能模块被封装为可互换的插件单元，支持跨场景的无缝复用 ，极大地加速了研究迭代的效率。
 
 ## 🏛️ 架构与设计
 
@@ -183,6 +183,27 @@ pip install agentkernel-distributed
 > 分布式包依赖于 **Ray**，会自动进行安装。
 
 👉 详细使用方法和示例请参阅 [分布式版 README](examples/distributed_test/README.md)。
+
+#### 安装可选功能
+
+单机版（`agentkernel-standalone`）和分布式版（`agentkernel-distributed`）均支持用于 Web 服务和数据库存储的可选依赖。您可以根据需要进行安装。
+
+- `web` → 安装 `aiohttp`, `fastapi`, `uvicorn`
+- `storages` → 安装 `asyncpg`, `pymilvus`, `redis`
+- `all` → 安装 `web` 和 `storages` 的所有依赖
+
+如需安装这些可选功能，请在包名后使用方括号 `[]`。例如：
+
+```bash
+# 安装单机版并集成 web 功能
+pip install "agentkernel-standalone[web]"
+
+# 安装分布式版并集成 storages 功能
+pip install "agentkernel-distributed[storages]"
+
+# 安装分布式版并集成所有可选功能
+pip install "agentkernel-distributed[all]"
+```
 
 ### 3. （可选）启动 Society-Panel
 
@@ -250,7 +271,7 @@ MAS/
 感谢所有为 Agent-Kernel 做出贡献的开发者们：
 
 <a href="https://github.com/ZJU-LLMs/Agent-Kernel/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZJU-LLMs/Agent-Kernel&v=1" />
+  <img src="https://contrib.rocks/image?repo=ZJU-LLMs/Agent-Kernel&v=1" width=400 />
 </a>
 
 _我们同样欢迎您通过提交 Pull Requests 成为贡献者中的一员！_
