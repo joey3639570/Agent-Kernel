@@ -178,6 +178,8 @@ You can choose either **standalone** or **distributed** package based on your ne
 pip install agentkernel-standalone
 ```
 
+👉 For detailed usage and examples, see the [Standalone README](examples/standalone_test/README.md).
+
 #### Agent-Kernel Distributed
 
 ```bash
@@ -186,19 +188,7 @@ pip install agentkernel-distributed
 
 > The distributed package depends on **Ray** and will install it automatically.
 
-#### Optional Extras
-
-Both packages support optional extras:
-
-- `[web]` → `aiohttp`, `fastapi`, `uvicorn`
-- `[storages]` → `asyncpg`, `pymilvus`, `redis`
-- `[all]` → includes both `web` and `storages`
-
-```bash
-# Example with extras
-pip install agentkernel-standalone[all]
-pip install agentkernel-distributed[web,storages]
-```
+👉 For detailed usage and examples, see the [Distributed README](examples/distributed_test/README.md).
 
 ### 3. (Optional) Start Society-Panel
 

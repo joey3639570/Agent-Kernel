@@ -172,6 +172,8 @@ Agent-Kernel 框架采用模块化微内核架构，包含一个由 **Agent**、
 pip install agentkernel-standalone
 ```
 
+👉 详细使用方法和示例请参阅 [单机版 README](examples/standalone_test/README.md)。
+
 #### Agent-Kernel 分布式版本
 
 ```bash
@@ -180,19 +182,7 @@ pip install agentkernel-distributed
 
 > 分布式包依赖于 **Ray**，会自动进行安装。
 
-#### 可选附加功能
-
-两个包都支持可选的附加功能：
-
-- `[web]` → `aiohttp`, `fastapi`, `uvicorn`
-- `[storages]` → `asyncpg`, `pymilvus`, `redis`
-- `[all]` → 同时包含 `web` 和 `storages`
-
-```bash
-# 安装示例
-pip install agentkernel-standalone[all]
-pip install agentkernel-distributed[web,storages]
-```
+👉 详细使用方法和示例请参阅 [分布式版 README](examples/distributed_test/README.md)。
 
 ### 3. （可选）启动 Society-Panel
 

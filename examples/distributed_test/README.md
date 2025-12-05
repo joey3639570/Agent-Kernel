@@ -4,14 +4,14 @@ This example demonstrates how to build a simple Multi-Agent System using Agent-K
 To simplify the process, we have provided basic implementations for five core plugins: Perceive, Plan, Invoke, Communication, and Space. The remaining plugins are structured as placeholders (using pass) to allow for easy customization and expansion by the user.
 
 # Quick Start
-1. Set your api key
+1. Set your api key in **`examples/distributed_test/configs/models_config.yaml`**
+
     ```yaml
-        **Agent-Kernel/distributed_test/configs/models_config.yaml**
-        - name: OpenAIProvider
-        model: your-model-name
-        api_key: your-api-key
-        base_url: your-base-url
-        capabilities: ["your-capabilities"] # e.g., capabilities: ["chat"]
+    - name: OpenAIProvider
+      model: your-model-name
+      api_key: your-api-key
+      base_url: your-base-url
+      capabilities: ["your-capabilities"] # e.g., capabilities: ["chat"]
     ```
 
 2. Install the required dependencies:
