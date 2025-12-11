@@ -1,8 +1,8 @@
 <div align="center">
  <img
-  src="assets/agentkernel_logo.png"
+  src="assets/agentkernel_cover.png"
   alt="Agent-Kernel Logo"
-  width="400"
+  width="800"
  />
 </div>
 
