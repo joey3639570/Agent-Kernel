@@ -229,7 +229,8 @@ class GraphMemory(GraphMemoryModule):
                 props["last_interaction_context"] = context
 
             await self._adapter.update_edge(source_id, target_id, props)
-            await self._adapter.update_edge(target_id, source_id, props)
+            # Do not mirror the interaction stats to the reverse edge.
+            # Reverse direction should track its own history independently.
             return True
         else:
             # Create new relationship based on sentiment
