@@ -4,6 +4,7 @@ from .perceive import PerceiveComponent
 from .plan import PlanComponent
 from .reflect import ReflectComponent
 from .invoke import InvokeComponent
+from .memory import MemoryComponent
 
 __all__ = [
     "ProfileComponent",
@@ -12,4 +13,5 @@ __all__ = [
     "PlanComponent",
     "ReflectComponent",
     "InvokeComponent",
+    "MemoryComponent",
 ]

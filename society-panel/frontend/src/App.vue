@@ -23,6 +23,7 @@ const themeStore = useThemeStore()
         <RouterLink class="ak-link" to="/">Dashboard</RouterLink>
         <RouterLink class="ak-link" to="/files">File Management</RouterLink>
         <RouterLink class="ak-link" to="/configs">Configuration</RouterLink>
+        <RouterLink class="ak-link" to="/editor">Node Editor</RouterLink>
       </nav>
       <div class="ak-nav__actions">
         <button

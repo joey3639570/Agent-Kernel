@@ -56,7 +56,7 @@ class ActionPlugin(ABC):
             annotation_type (str): Annotation tag used to discover methods.
 
         Returns:
-            List[Dict[str, Any]]: Metadata describing each callable.
+            List[Dict[str, Any]]: Metadata describing each callable with ToolSpec-compatible format.
         """
         methods: List[Dict[str, Any]] = []
         for method_name in dir(self):
@@ -67,14 +67,106 @@ class ActionPlugin(ABC):
 
             description = inspect.getdoc(method) or ""
 
+            # Generate input_schema from method signature for ToolSpec compatibility
+            input_schema = self._generate_input_schema(method)
+
             methods.append(
                 {
                     "name": method_name,
                     "description": description.strip(),
+                    "input_schema": input_schema,
                 }
             )
 
         return methods
+
+    def _generate_input_schema(self, method: Callable[..., Any]) -> Dict[str, Any]:
+        """Generate JSON Schema for a method's parameters.
+
+        Args:
+            method: The method to introspect.
+
+        Returns:
+            JSON Schema dict describing the method's parameters.
+        """
+        from typing import get_type_hints, get_origin, get_args, Union
+
+        sig = inspect.signature(method)
+        try:
+            hints = get_type_hints(method)
+        except Exception:
+            hints = {}
+
+        properties: Dict[str, Any] = {}
+        required: List[str] = []
+
+        for param_name, param in sig.parameters.items():
+            if param_name in ("self", "cls"):
+                continue
+
+            param_type = hints.get(param_name)
+            json_type = self._python_type_to_json_schema(param_type)
+            properties[param_name] = json_type
+
+            # Add description from docstring if available
+            if param.default is inspect.Parameter.empty:
+                required.append(param_name)
+
+        schema: Dict[str, Any] = {
+            "type": "object",
+            "properties": properties,
+        }
+        if required:
+            schema["required"] = required
+
+        return schema
+
+    def _python_type_to_json_schema(self, python_type: Any) -> Dict[str, Any]:
+        """Convert a Python type to JSON Schema type.
+
+        Args:
+            python_type: The Python type to convert.
+
+        Returns:
+            JSON Schema type definition.
+        """
+        from typing import get_origin, get_args, Union
+
+        if python_type is None:
+            return {"type": "string"}
+
+        origin = get_origin(python_type)
+        args = get_args(python_type)
+
+        # Handle Optional (Union with None)
+        if origin is Union and type(None) in args:
+            non_none_args = [a for a in args if a is not type(None)]
+            if len(non_none_args) == 1:
+                return self._python_type_to_json_schema(non_none_args[0])
+
+        # Handle List
+        if origin is list:
+            item_type = args[0] if args else Any
+            return {"type": "array", "items": self._python_type_to_json_schema(item_type)}
+
+        # Handle Dict
+        if origin is dict:
+            return {"type": "object"}
+
+        # Basic types
+        type_map = {
+            str: {"type": "string"},
+            int: {"type": "integer"},
+            float: {"type": "number"},
+            bool: {"type": "boolean"},
+            type(None): {"type": "null"},
+        }
+
+        if python_type in type_map:
+            return type_map[python_type]
+
+        # Default to string for unknown types
+        return {"type": "string"}
 
     async def execute(self, name: str, arguments: Dict[str, Any]) -> Any:
         """

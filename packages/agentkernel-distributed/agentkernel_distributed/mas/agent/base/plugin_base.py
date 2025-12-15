@@ -11,6 +11,7 @@ from ....types.schemas.message import Message
 if TYPE_CHECKING:
     from ..components import (
         InvokeComponent,
+        MemoryComponent,
         PerceiveComponent,
         PlanComponent,
         ProfileComponent,
@@ -27,6 +28,7 @@ __all__ = [
     "StatePlugin",
     "ProfilePlugin",
     "InvokePlugin",
+    "MemoryPlugin",
 ]
 
 
@@ -230,3 +232,35 @@ class InvokePlugin(AgentPlugin):
     def current_action(self) -> Optional[CurrentAction]:
         """Return the action currently in progress."""
         return self._current_action
+
+
+class MemoryPlugin(AgentPlugin):
+    """Base class for memory retrieval plugins.
+
+    This plugin type integrates with the Memory Layer to retrieve
+    relevant memories and social context before planning.
+    """
+
+    COMPONENT_TYPE = "memory"
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._component: Optional["MemoryComponent"] = None
+        self._memory_context: Optional[Dict[str, Any]] = None
+        self._social_context: Optional[str] = None
+        self._retrieved_memories: list[Dict[str, Any]] = []
+
+    @property
+    def memory_context(self) -> Optional[Dict[str, Any]]:
+        """Return the most recent memory context."""
+        return self._memory_context
+
+    @property
+    def social_context(self) -> Optional[str]:
+        """Return the most recent social context summary."""
+        return self._social_context
+
+    @property
+    def retrieved_memories(self) -> list[Dict[str, Any]]:
+        """Return the list of retrieved memories."""
+        return self._retrieved_memories
