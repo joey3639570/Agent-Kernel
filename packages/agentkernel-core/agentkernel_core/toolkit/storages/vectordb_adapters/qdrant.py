@@ -6,6 +6,8 @@ suitable for both local development and production deployments.
 
 from __future__ import annotations
 
+import asyncio
+import asyncio
 import logging
 import uuid
 from typing import Any, Dict, List, Optional, Sequence
@@ -99,11 +101,17 @@ class QdrantAdapter(BaseVectorDBAdapter):
             "dot": Distance.DOT,
         }
 
-        collections = self._client.get_collections().collections
+        loop = asyncio.get_event_loop()
+
+        def _list_collections():
+            return self._client.get_collections().collections
+
+        collections = await loop.run_in_executor(None, _list_collections)
         exists = any(c.name == self._collection_name for c in collections)
 
         if not exists:
-            self._client.create_collection(
+            def _create():
+                return self._client.create_collection(
                 collection_name=self._collection_name,
                 vectors_config=VectorParams(
                     size=self._vector_dim,
